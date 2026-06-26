@@ -1,10 +1,12 @@
 class Account {
+  static totalAccounts = 0;//added static for no of accounts 
   #balance; // private field declared
 
   constructor(accountHolder, accountNumber, initialBalance) {
     this.accountHolder = accountHolder;
     this.accountNumber = accountNumber;
     this.#balance = initialBalance;
+    Account.totalAccounts++;
   }
 
   deposit(amount) {
@@ -32,14 +34,25 @@ class Account {
   get balance() {
     return this.#balance;
   }
+
+  //static
+  static getTotalAccounts(){
+    return Account.totalAccounts;
+  }
 }
 
 
-// testing 
-const acc1=new Account("Vrishali","ACC001",1000);
-console.log("Current balance - ",acc1.balance);
-acc1.deposit(500);
-acc1.withdraw(200);
-acc1.withdraw(5000);
-console.log(acc1.balance);
+// testing 1
+// const acc1=new Account("Vrishali","ACC001",1000);
+// console.log("Current balance - ",acc1.balance);
+// acc1.deposit(500);
+// acc1.withdraw(400);
+// acc1.withdraw(5000);
+// console.log(acc1.balance);
+
+//testing 2
+
+const acc2=new Account("Ram","ACC002",1000);
+const acc3=new Account("Sham","ACC003",2000);
+console.log(Account.getTotalAccounts());
 
