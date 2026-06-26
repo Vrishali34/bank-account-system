@@ -41,18 +41,39 @@ class Account {
   }
 }
 
+//inheritance
+class SavingsAccount extends Account{
+  constructor(accountHolder,accountNumber,initialBalance,interestRate){
+    super(accountHolder,accountNumber,initialBalance);
+    this.interestRate = interestRate;
+    
+  }
+  addInterest(){
+    const interestAmount = this.balance * this.interestRate;
+    this.deposit(interestAmount);
+    console.log(`Interest of ${interestAmount} added.`);
+  }
+}
 
-// testing 1
-// const acc1=new Account("Vrishali","ACC001",1000);
-// console.log("Current balance - ",acc1.balance);
-// acc1.deposit(500);
-// acc1.withdraw(400);
-// acc1.withdraw(5000);
-// console.log(acc1.balance);
 
-//testing 2
+// testing 1 - for createing accoint , reflecting deposit, withdrqw , balance
+const acc1=new Account("Vrishali","ACC001",1000);
+console.log("Current balance - ",acc1.balance);
+acc1.deposit(500);
+acc1.withdraw(400);
+acc1.withdraw(5000);
+console.log(acc1.balance);
+
+//testing 2 - for to count total no of accounts
 
 const acc2=new Account("Ram","ACC002",1000);
 const acc3=new Account("Sham","ACC003",2000);
 console.log(Account.getTotalAccounts());
+
+//testing 3
+
+
+const sav1 = new SavingsAccount("Raju", "SAV001", 1000, 0.05); // 5% interest
+sav1.addInterest(); // Deposited 50. New balance: 1050  →  Interest of 50 added.
+console.log(sav1.balance); // 1050
 
