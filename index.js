@@ -1,33 +1,45 @@
-class Account{
-    constructor(accountHolder,accountNumber,initialBalance)
-{
-    this.accountHolder=accountHolder;
-    this.accountNumber=accountNumber;
-    this.#balance=initialBalance;
+class Account {
+  #balance; // private field declared
 
-}
-#balance;//private field
+  constructor(accountHolder, accountNumber, initialBalance) {
+    this.accountHolder = accountHolder;
+    this.accountNumber = accountNumber;
+    this.#balance = initialBalance;
+  }
 
-deposit(amount){
-    if(amout<=0){
-        console.log("Deposit amount shoud be greater tahn 0");
-        return;
+  deposit(amount) {
+    if (amount <= 0) {
+      console.log("Deposit amount must be greater than 0");
+      return;
     }
-    this.#balance.# += amount;
-    console.log('Deposited ${amout}. New balance: ${this.#balance}');
-
-}
-withdraw(amount) {
-  if (amount <= 0) {
-    console.log("Withdrawal amount must be greater than 0");
-    return;
+    this.#balance += amount;
+    console.log(`Deposited ${amount}. New balance: ${this.#balance}`);
   }
-  if (amount > this.#balance) {
-    console.log("Insufficient balance");
-    return;
+
+  withdraw(amount) {
+    if (amount <= 0) {
+      console.log("Withdrawal amount must be greater than 0");
+      return;
+    }
+    if (amount > this.#balance) {
+      console.log("Insufficient balance");
+      return;
+    }
+    this.#balance -= amount;
+    console.log(`Withdrew ${amount}. New balance: ${this.#balance}`);
   }
-  this.#balance -= amount; 
-  console.log(`Withdrew ${amount}. New balance: ${this.#balance}`);
+
+  get balance() {
+    return this.#balance;
+  }
 }
 
-}
+
+// testing 
+const acc1=new Account("Vrishali","ACC001",1000);
+console.log("Current balance - ",acc1.balance);
+acc1.deposit(500);
+acc1.withdraw(200);
+acc1.withdraw(5000);
+console.log(acc1.balance);
+
