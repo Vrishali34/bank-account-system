@@ -117,7 +117,7 @@ const acc3 = new Account("Sham", "ACC003", 2000);
 console.log(Account.getTotalAccounts());
 
 // testing 3
-const sav1 = new SavingsAccount("Raju", "SAV001", 1000, 0.05); // 5% interest
+const sav1 = new SavingsAccount("Alice", "SAV001", 1000, 0.05); // 5% interest
 sav1.addInterest();
 console.log(sav1.balance);
 
